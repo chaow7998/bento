@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import { Button } from 'mint-ui'
 import 'mint-ui/lib/style.css'
-import '../src/mock/mockServer'
+import './mock/mockServer'
 import App from './App'
 import router from './router/index'
 import store from './store'

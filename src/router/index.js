@@ -69,7 +69,7 @@ export default new VueRouter({
         },
         {
           path: '/shop',
-          redirect: '/goods'
+          redirect: '/shop/goods'
         }
       ]
     },
