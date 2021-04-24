@@ -21,17 +21,17 @@
               <i class="iconfont icon-jiantou1"></i>
             </span>
         </a> -->
-        <router-link to="/login" class="profile-link">
+        <router-link :to="userInfo._id ? '/profile' : '/login'" class="profile-link">
           <div class="profile_image">
             <i class="iconfont icon-person"></i>
           </div>
           <div class="user-info">
-            <p class="user-info-top">登录/注册</p>
+            <p class="user-info-top" v-if="!userInfo.phone">{{userInfo.name || '登录/注册'}}</p>
             <p>
                 <span class="user-icon">
                   <i class="iconfont icon-shouji icon-mobile"></i>
                 </span>
-              <span class="icon-mobile-number">暂无绑定手机号</span>
+              <span class="icon-mobile-number">{{userInfo.phone || '暂无绑定手机号'}}</span>
             </p>
           </div>
           <span class="arrow">
@@ -107,19 +107,39 @@
           </div>
         </a>
       </section>
+      <section>
+        <mt-button @click.native="logOut" size="large" type="danger" v-show="userInfo._id">danger</mt-button>
+      </section>
     </section>
+    
   </div>
 </template>
 
 <script>
 import HeaaderTop from "../../components/headerTop/headerTop";
-
+import { MessageBox } from "mint-ui";
+import { mapState } from "vuex";
 export default {
   data() {
     return {};
   },
   components: {
     HeaaderTop
+  },
+  computed: {
+    ...mapState(["userInfo"])
+  },
+  methods: {
+    logOut() {
+      MessageBox.confirm("确定执行此操作?").then(
+        action => {
+          this.$store.dispatch("reqLogout");
+        },
+        action => {
+          console.log("quxia");
+        }
+      );
+    }
   }
 };
 </script>
