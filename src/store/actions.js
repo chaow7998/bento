@@ -1,5 +1,5 @@
 import {
-    RECIEVE_ADDRESS, RECIEVE_CATEGORYS, RECIEVE_SHOPS, RECIEVE_GOODS, RECIEVE_INFO, RECIEVE_RATINGS, RECIEVE_USERINFO, RECIEVE_LOGOUT
+    RECIEVE_ADDRESS, RECIEVE_CATEGORYS, RECIEVE_SHOPS, CLEAR_CART, RECEIVE_SEARCH_SHOPS, INCREMENT_FOOD_COUNT, DECREMENT_FOOD_COUNT, RECIEVE_GOODS, RECIEVE_INFO, RECIEVE_RATINGS, RECIEVE_USERINFO, RECIEVE_LOGOUT
 } from './mutation-types'
 import {
     reqAddress, reqCategorys, reqLogout, reqShopInfo,
@@ -55,11 +55,12 @@ export default {
             commit(RECIEVE_LOGOUT, { userInfo })
         }
     },
-    async getGoods({ commit }) {
+    async getGoods({ commit }, callback) {
         const result = await reqShopGoods()
         if (result.code === 0) {
             const goods = result.data
             commit(RECIEVE_GOODS, { goods })
+            callback && callback()
         }
     },
     async getInfo({ commit }) {
@@ -69,11 +70,12 @@ export default {
             commit(RECIEVE_INFO, { info })
         }
     },
-    async getRatings({ commit }) {
+    async getRatings({ commit }, callback) {
         const result = await reqShopRatings()
         if (result.code === 0) {
             const ratings = result.data
             commit(RECIEVE_RATINGS, { ratings })
+            callback && callback()
         }
     },
     // 同步更新food中的count值

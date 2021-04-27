@@ -6,5 +6,7 @@ export const RECIEVE_LOGOUT = 'recieve_logout'//RESET_USER_INFO
 export const RECIEVE_GOODS = 'recieve_goods'
 export const RECIEVE_INFO = 'recieve_info'
 export const RECIEVE_RATINGS = 'recieve_ratings'
-
-
+export const INCREMENT_FOOD_COUNT = 'increment_food_count'
+export const DECREMENT_FOOD_COUNT = 'decrement_food_count'
+export const CLEAR_CART = 'clear_cart'
+export const RECEIVE_SEARCH_SHOPS = 'receive_search_shops'

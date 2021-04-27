@@ -66,8 +66,9 @@
 
 
 <script>
-import BScroll from "better-scroll";
+import BScroll from "@better-scroll/core";
 import { mapState } from "vuex";
+import Pullup from "@better-scroll/pull-up";
 import CartControl from "../../../components/CartControl/CartControl.vue";
 import Food from "../../../components/Food/Food.vue";
 import ShopCart from "../../../components/ShopCart/ShopCart.vue";
@@ -113,22 +114,26 @@ export default {
     // 初始化滚动
     _initScroll() {
       // 列表显示之后创建
+      BScroll.use(Pullup);
       new BScroll(".menu-wrapper", {
-        click: true
+        click: true,
+        probeType: 3,
+        pullUpLoad: true
       });
       this.foodsScroll = new BScroll(".foods-wrapper", {
         probeType: 2, // 因为惯性滑动不会触发
+        pullUpLoad: true,
         click: true
       });
 
       // 给右侧列表绑定scroll监听
       this.foodsScroll.on("scroll", ({ x, y }) => {
-        console.log(x, y);
+        // console.log(x, y);
         this.scrollY = Math.abs(y);
       });
       // 给右侧列表绑定scroll结束的监听
       this.foodsScroll.on("scrollEnd", ({ x, y }) => {
-        console.log("scrollEnd", x, y);
+        // console.log("scrollEnd", x, y);
         this.scrollY = Math.abs(y);
       });
     },
@@ -148,7 +153,7 @@ export default {
 
       // 3. 更新数据
       this.tops = tops;
-      console.log(tops);
+      // console.log(tops);
     },
 
     clickMenuItem(index) {
@@ -189,6 +194,7 @@ export default {
   bottom 46px;
   width 100%;
   background #fff;
+  height calc( 100vh - 194px );
   overflow hidden;
   .menu-wrapper
     flex 0 0 80px;

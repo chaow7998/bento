@@ -7,6 +7,13 @@ import './mock/mockServer'
 import App from './App'
 import router from './router/index'
 import store from './store'
+import VueLazyload from 'vue-lazyload'
+import './filters'
+
+Vue.use(VueLazyload, {
+  error: 'dist/error.png',
+  loading: '../static/imgs/loading.gif',
+})
 Vue.config.productionTip = false
 Vue.component(Button.name, Button)
 /* eslint-disable no-new */

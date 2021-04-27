@@ -92,7 +92,7 @@
                   >{{ item }}</span
                 >
               </div>
-              <div class="time">{{ rating.rateTime || date - format }}</div>
+              <div class="time">{{ rating.rateTime | dateFormat }}</div>
             </div>
           </li>
         </ul>
@@ -117,9 +117,13 @@ export default {
   mounted() {
     this.$store.dispatch("getRatings", () => {
       this.$nextTick(() => {
-        new BScroll(this.$refs.ratings, {
-          click: true
-        });
+        new BScroll(
+          this.$refs.ratings,
+          {
+            click: true
+          },
+          () => {}
+        );
       });
     });
   },
@@ -176,6 +180,7 @@ export default {
   bottom 0;
   left 0;
   width 100%;
+  height calc( 100vh - 194px );
   overflow hidden;
   background #fff;
   .overview

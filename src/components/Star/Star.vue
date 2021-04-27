@@ -31,7 +31,7 @@ export default {
       const scs = [];
       // 向scs中添加n个CLASS_ON
       const scoreInteger = Math.floor(score);
-      console.log(scoreInteger);
+      // console.log(scoreInteger);
       for (let i = 0; i < scoreInteger; i++) {
         scs.push(CLASS_ON);
       }

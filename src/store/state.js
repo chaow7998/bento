@@ -9,5 +9,5 @@ export default {
     ratings: [],
     info: [],
     cartFoods: [],
-    searchFoods: []
+    searchFoods: [],
 }
